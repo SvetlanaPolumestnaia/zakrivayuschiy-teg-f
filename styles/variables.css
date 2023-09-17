@@ -1,5 +1,6 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
 :root {
+    --color-backdrop: rgb(0 0 0 / 0.75);
     --font-regular: 'Inter-Variable';
     --font-accent: 'PressStart2p-Regular';
     --font-weight-title: 700;
@@ -16,4 +17,5 @@
     --color-card__images-text-text-shadow: rgb(255 255 255 / 0.5);
     --color-like-icon-contour: #000000;
     --color-like-icon-sparks: rgb(255 0 0);
+
 }
