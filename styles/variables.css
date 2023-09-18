@@ -1,21 +1,23 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
-:root {
-    --color-backdrop: rgb(0 0 0 / 0.75);
-    --font-regular: 'Inter-Variable';
-    --font-accent: 'PressStart2p-Regular';
-    --font-weight-title: 700;
-    --font-weight--text: 400;
-    --color-background: #FFFFFF;
-    --color-accent: #000000;
-    --color-accent-button: rgb(0 0 0 / 0.6);
-    --color-button__text: #FFFFFF;
-    --color-repeating-linear-gradient: rgb(211 211 211);
-    --color-repeating-linear-gradient-transparent: rgb(211 211 211 / 0); /*Safari плохо отображает transparent, поэтому пользуюсь RGB */
-    --color-linear-gradient-from: #e7e7e7;
-    --color-linear-gradient-to: #1a1a1a;
-    --color-card__images-text: rgb(0 0 0 / 0.5);
-    --color-card__images-text-text-shadow: rgb(255 255 255 / 0.5);
-    --color-like-icon-contour: #000000;
-    --color-like-icon-sparks: rgb(255 0 0);
 
+:root {
+  --color-backdrop: rgb(0 0 0 / 0.75);
+  --font-regular: 'Inter-Variable';
+  --font-accent: 'PressStart2p-Regular';
+  --font-weight-title: 700;
+  --font-weight--text: 400;
+  --color-background: #fff;
+  --color-accent: #000;
+  --color-accent-button: rgb(0 0 0 / 0.6);
+  --color-button__text: #fff;
+  --color-repeating-linear-gradient: rgb(211 211 211);
+  --color-repeating-linear-gradient-transparent: rgb(
+    211 211 211 / 0
+  ); /*Safari плохо отображает transparent, поэтому пользуюсь RGB */
+  --color-linear-gradient-from: #e7e7e7;
+  --color-linear-gradient-to: #1a1a1a;
+  --color-card__images-text: rgb(0 0 0 / 0.5);
+  --color-card__images-text-text-shadow: rgb(255 255 255 / 0.5);
+  --color-like-icon-contour: #000;
+  --color-like-icon-sparks: rgb(255 0 0);
 }

@@ -12,3 +12,341 @@
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+
+/* ---------- Градиенты ---------- */
+
+.page {
+  background: repeating-linear-gradient(
+      to bottom,
+      var(--color-repeating-linear-gradient) 0 2px,
+      var(--color-repeating-linear-gradient-transparent) 2px 4px
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--color-repeating-linear-gradient) 0 2px,
+      var(--color-repeating-linear-gradient-transparent) 2px 4px
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-linear-gradient-from),
+      var(--color-linear-gradient-to)
+    );
+}
+
+@supports (font-variation-settings: normal) {
+  .page {
+    font-weight: var(--font-weight-text-light), 400;
+  }
+}
+
+/* --------------- Состояния кнопки в меню хэдера --------------- */
+
+.theme-menu__button:hover {
+  color: var(--color-accent-button);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.theme-menu__button:disabled {
+  color: var(--color-accent-button);
+  pointer-events: none;
+  transition: color 0.3s;
+}
+
+.theme-menu__button:focus {
+  outline: none;
+  color: var(--color-accent-button);
+}
+
+.theme-menu__button:focus-visible::after {
+  content: '';
+  display: block;
+  position: absolute;
+  inline-size: 100%;
+  border-block-end: 2px solid var(--color-accent-button);
+  animation: theme-menu__button-focus-visible 0.3s;
+  transform-origin: 0;
+}
+
+@keyframes theme-menu__button-focus-visible {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.theme-menu__button:disabled::before {
+  content: '▶';
+  position: absolute;
+  inset-inline-start: -20px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .theme-menu__button:disabled::before {
+    content: '▶';
+    position: absolute;
+    inset-inline-start: -20px;
+    animation: move 0.5s ease-in-out alternate infinite;
+  }
+
+  @keyframes move {
+    0% {
+      inset-inline-start: -20px;
+    }
+
+    100% {
+      inset-inline-start: -16px;
+    }
+  }
+}
+
+/* --------------- Тень на тексте в картинке --------------- */
+
+.card__images-text {
+  text-shadow:
+    -1px 0 var(--color-card__images-text-text-shadow),
+    0 1px var(--color-card__images-text-text-shadow),
+    1px 0 var(--color-card__images-text-text-shadow),
+    0 -1px var(--color-card__images-text-text-shadow);
+}
+
+@supports (
+  (text-stroke: 1px var(--color-card__images-text-text-shadow)) or
+    (-webkit-text-stroke: 1px var(--color-card__images-text-text-shadow))
+) {
+  .card__images-text {
+    -webkit-text-stroke: 1px var(--color-card__images-text-text-shadow);
+    text-stroke: 1px var(--color-card__images-text-text-shadow);
+    text-shadow: none;
+  }
+}
+
+/* --------------- Кнопки в карточке и их состояния --------------- */
+
+.button {
+  background-color: inherit;
+  border: 2px solid var(--color-accent);
+  font-size: 14px;
+  text-transform: inherit;
+  font-family: var(--font-accent);
+  line-height: 90%;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 0.3s,
+    animation 0.5s,
+    box-shadow 0.3s;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0 0 var(--color-accent);
+  transition: box-shadow 0.3s;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--color-background);
+}
+
+.button::after {
+  content: '';
+  inline-size: 100%;
+  block-size: 100%;
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+}
+
+.button:hover:after {
+  animation: button-hover 0.5s ease-in-out;
+  background-color: var(--color-accent);
+}
+
+@keyframes button-hover {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.button:hover .button__text {
+  color: var(--color-button__text);
+  mix-blend-mode: difference;
+}
+
+.button:hover .floppy {
+  fill: var(--color-button__text);
+  stroke: var(--color-button__text);
+  z-index: 10;
+  mix-blend-mode: difference;
+}
+
+.card__like-button {
+  inline-size: 130px;
+  block-size: 38px;
+}
+
+.card__icon-button {
+  background-color: inherit;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+  inline-size: 43px;
+  block-size: 38px;
+  margin-inline-end: 2px;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.card__icon-button:hover {
+  cursor: pointer;
+}
+
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  border: 2px solid var(--color-accent);
+  transition: border 0.3s ease;
+}
+
+/* --------------- Hover эффект сердца --------------- */
+
+.like-icon .core {
+  fill: var(--color-background);
+  transition: fill 0.3s linear 0.03s;
+}
+
+.like-icon:hover .core {
+  fill: var(--color-like-icon-contour);
+  transition: fill 0.3s linear;
+}
+
+.like-icon .main-body {
+  fill: var(--color-background);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:hover .main-body {
+  fill: var(--color-like-icon-contour);
+  transition: fill 0.3s linear 0.05s;
+}
+
+/* --------------- Active эффект сердца --------------- */
+
+.like-icon .core {
+  transition: fill 0.3s linear 0.03s;
+}
+
+.like-icon:active .core {
+  fill: var(--color-like-icon-sparks);
+  transition: fill 0.3s linear;
+}
+
+.like-icon .main-body {
+  transition: fill 0.3s linear;
+}
+
+.like-icon:active .main-body {
+  fill: var(--color-like-icon-sparks);
+  transition: fill 0.3s linear 0.05s;
+}
+
+/* --------------- Эффект нажатия сердца --------------- */
+/* --------------- Закрашивание внутри --------------- */
+
+.like-icon.is-liked .core {
+  fill: var(--color-like-icon-sparks);
+  transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--color-like-icon-sparks);
+  transition: fill 0.3s linear 0.05s;
+}
+
+/* --------------- Закрашивание контура --------------- */
+
+.like-icon.is-liked .contour {
+  fill: var(--color-like-icon-sparks);
+  transition: fill 0.3s linear 0.06s;
+}
+
+/* --------------- Увеличение сердца --------------- */
+
+.like-icon.is-liked .heart {
+  animation: heart 0.3s ease-out 0.1s 2 alternate;
+  transform-origin: center;
+}
+
+@keyframes heart {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.15);
+  }
+}
+
+/* --------------- Искры --------------- */
+
+.sparks {
+  opacity: 0;
+}
+
+.like-icon.is-liked .sparks {
+  animation: sparks 0.3s ease-in 0.3s 1 alternate backwards;
+}
+
+@keyframes sparks {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* --------------- Кнопка Сохранить --------------- */
+
+.save-button {
+  background-color: var(--color-background);
+  margin-block-end: 102px;
+  padding: 19px;
+  min-inline-size: clamp(19.125rem, 2.723vw + 18.487rem, 20.938rem);
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.floppy {
+  margin: auto;
+  inline-size: 21px;
+  block-size: 21px;
+  flex: 0 0 auto;
+  z-index: 11;
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
+}
+
+/* --------------- Медиа-запрос для мобилки --------------- */
+
+@media (width <= 376px) {
+  .card {
+    width: 100vw;
+  }
+
+  .save-button {
+    flex-direction: column;
+  }
+}
