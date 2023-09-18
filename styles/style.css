@@ -17,12 +17,18 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-family: var(--font-regular), sans-serif;
+  font-family: sans-serif;
   color: var(--color-accent);
   background-color: var(--color-background);
   background-size: cover;
   background-attachment: fixed;
 }
+
+@supports (font-variation-settings: normal) {
+  .page {
+      font-family: var(--font-regular), sans-serif;
+  }
+} 
 
 .card {
   width: calc(clamp(23.438rem, 30.141vw + 16.373rem, 43.5rem));
@@ -127,7 +133,6 @@
   inset-block-start: 28px;
   font-size: 14px;
   font-family: var(--font-accent), sans-serif;
-  text-transform: uppercase;
   color: var(--color-card__images-text);
   mix-blend-mode: hard-light;
 }

@@ -242,7 +242,7 @@
 
 /* --------------- Active эффект сердца --------------- */
 
-.like-icon .core {
+.like-icon.core {
   transition: fill 0.3s linear 0.03s;
 }
 
@@ -251,7 +251,7 @@
   transition: fill 0.3s linear;
 }
 
-.like-icon .main-body {
+.like-icon.main-body {
   transition: fill 0.3s linear;
 }
 
