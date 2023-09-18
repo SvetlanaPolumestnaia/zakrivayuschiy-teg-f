@@ -25,10 +25,11 @@
 }
 
 @supports (font-variation-settings: normal) {
+
   .page {
-      font-family: var(--font-regular), sans-serif;
+    font-family: var(--font-regular), sans-serif;
   }
-} 
+}
 
 .card {
   width: calc(clamp(23.438rem, 30.141vw + 16.373rem, 43.5rem));
@@ -219,10 +220,13 @@ dialog:not([open]) {
   block-size: 39px;
 }
 
+.dialog__form {
+  margin: auto;
+}
+
 .popover-button {
   min-inline-size: clamp(13.938rem, 3.38vw + 13.145rem, 16.188rem);
   padding: 9px 17px;
-  margin: auto;
 }
 
 .dialog::backdrop {

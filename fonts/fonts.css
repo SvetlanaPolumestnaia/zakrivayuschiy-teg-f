@@ -1,16 +1,17 @@
 /* В этом файле вы импортируете все шрифты для сайта. Один из них вариативный и требует особенной настройки */
 
 @supports (font-variation-settings: normal) {
-    @font-face {
+
+  @font-face {
     font-display: swap;
     font-weight: 400 785;
     font-family: Inter-Variable;
     src:
-        local('Inter-Variable'),
-        url(../fonts/Inter-Variable.woff2) format('woff2 supports variations'),
-        url(../fonts/Inter-Variable.woff2) format('woff2-variations');
+      local('Inter-Variable'),
+      url(../fonts/Inter-Variable.woff2) format('woff2 supports variations'),
+      url(../fonts/Inter-Variable.woff2) format('woff2-variations');
     font-stretch: 100% 116%;
-    }
+  }
 }
 
 @font-face {
