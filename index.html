@@ -681,8 +681,7 @@
           </span>
         </div>
         <form class="dialog__form">
-          <button class="button popover-button" type="submit">
-            <!-- сначала было сделано через onclick, но тесты гитхаба не проходились -->
+          <button class="button popover-button" type="button" onclick="window['dialog-id'].close()">
             <span class="button__text"> ок </span>
           </button>
         </form>
