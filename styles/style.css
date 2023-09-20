@@ -143,9 +143,25 @@
   position: relative;
 }
 
-/* --------------- Тень на тексте в картинке --------------- */
+.card__image {
+  display: block;
+  border-block-start: 2px solid var(--color-accent, #000);
+  border-block-end: 2px solid var(--color-accent, #000);
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
 .card__images-text {
+  position: absolute;
+  z-index: 1;
+  inset-inline-end: clamp(0.688rem, 1.315vw + 0.379rem, 1.563rem);
+  inset-block-start: 28px;
+  font-size: 14px;
+  font-family: var(--font-accent, 'PressStart2P-Regular'), fantasy;
+  color: var(--color-card__images-text, rgb(0 0 0 / 0.5));
+  mix-blend-mode: hard-light;
   text-shadow:
     -1px 0 var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5)),
     0 1px var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5)),
@@ -172,27 +188,6 @@
       var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5));
     text-shadow: none;
   }
-}
-
-.card__image {
-  display: block;
-  border-block-start: 2px solid var(--color-accent, #000);
-  border-block-end: 2px solid var(--color-accent, #000);
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.card__images-text {
-  position: absolute;
-  z-index: 1;
-  inset-inline-end: clamp(0.688rem, 1.315vw + 0.379rem, 1.563rem);
-  inset-block-start: 28px;
-  font-size: 14px;
-  font-family: var(--font-accent, 'PressStart2P-Regular'), fantasy;
-  color: var(--color-card__images-text, rgb(0 0 0 / 0.5));
-  mix-blend-mode: hard-light;
 }
 
 .card__buttons {
