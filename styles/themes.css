@@ -6,7 +6,6 @@
 */
 
 :root.theme-light {
-  --color-backdrop: rgb(0 0 0 / 0.75);
   --font-weight-title: 700;
   --font-weight--text: 400;
   --color-background: #fff;
@@ -24,7 +23,6 @@
 }
 
 :root.theme-dark {
-  --color-backdrop: rgb(0 0 0 / 0.9);
   --font-weight-title: 785;
   --font-weight--text: 465;
   --color-background: #000;
@@ -44,7 +42,6 @@
 @media (prefers-color-scheme: dark) {
 
   :root {
-    --color-backdrop: rgb(0 0 0 / 0.9);
     --font-weight-title: 785;
     --font-weight--text: 465;
     --color-background: #000;

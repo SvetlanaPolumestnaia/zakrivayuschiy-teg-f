@@ -17,24 +17,55 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-family: sans-serif;
+  font-family: var(--font-regular, 'Inter-Variable'), sans-serif;
   color: var(--color-accent);
-  background-color: var(--color-background);
-  background-size: cover;
-  background-attachment: fixed;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      var(--color-repeating-linear-gradient-transparent, rgb(211 211 211 / 0)) 0,
+      var(--color-repeating-linear-gradient, rgb(211 211 211)) 1px,
+      var(--color-repeating-linear-gradient, rgb(211 211 211)) 2px,
+      var(--color-repeating-linear-gradient-transparent, rgb(211 211 211 / 0))
+        3px,
+      var(--color-repeating-linear-gradient-transparent, rgb(211 211 211 / 0))
+        4px
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--color-repeating-linear-gradient-transparent, rgb(211 211 211 / 0)) 0,
+      var(--color-repeating-linear-gradient, rgb(211 211 211)) 1px,
+      var(--color-repeating-linear-gradient, rgb(211 211 211)) 2px,
+      var(--color-repeating-linear-gradient-transparent, rgb(211 211 211 / 0))
+        3px,
+      var(--color-repeating-linear-gradient-transparent, rgb(211 211 211 / 0))
+        4px
+    ),
+    linear-gradient(
+        to bottom,
+        var(--color-linear-gradient-from, #e7e7e7),
+        var(--color-linear-gradient-to, #1a1a1a)
+      )
+      fixed var(--color-background, #fff) center / cover;
 }
 
 @supports (font-variation-settings: normal) {
 
   .page {
-    font-family: var(--font-regular), sans-serif;
+    font-family: var(--font-regular, 'Inter-Variable'), sans-serif;
+  }
+}
+
+@supports (font-variation-settings: normal) {
+
+  .page {
+    font-weight: var(--font-weight-text-light), 400;
   }
 }
 
 .card {
-  width: calc(clamp(23.438rem, 30.141vw + 16.373rem, 43.5rem));
-  background-color: var(--color-background);
-  border: 2px solid var(--color-accent);
+  width: clamp(23.438rem, 30.141vw + 16.373rem, 43.5rem);
+  background-color: var(--color-background, #fff);
+  border: 2px solid var(--color-accent, #000);
 }
 
 /* --------------- Хэдер --------------- */
@@ -43,9 +74,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-block-start: calc(clamp(7.5rem, 1.502vw + 7.148rem, 8.5rem));
-  padding-block-end: 25px;
-  font-family: var(--font-accent), sans-serif;
+  padding-block-start: clamp(7.5rem, 1.502vw + 7.148rem, 8.5rem);
+  padding-block-end: 27px;
+  font-family: var(--font-accent, 'PressStart2P-Regular'), fantasy;
 }
 
 .header {
@@ -70,18 +101,13 @@
   flex-direction: column;
   gap: 14px;
   text-align: left;
-  padding-block-start: 25px;
+  padding-block-start: 22px;
   padding-inline-start: 1rem; /* Подвинула для макета */
 }
 
-.theme-menu__button {
-  background-color: inherit;
-  border: none;
-  font-size: 14px;
-  text-transform: inherit;
-  padding: 0;
-  position: relative;
-  transition: color 0.3s;
+.theme-menu__item {
+  block-size: 14px;
+  display: block;
 }
 
 /* --------------- Основной контент --------------- */
@@ -98,18 +124,18 @@
 .card__content {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 22px;
 }
 
 .card__title {
-  padding: 0 10px;
+  padding: 3px 10px 5px;
   font-size: 18px;
-  font-weight: var(--font-weight-title);
+  font-weight: var(--font-weight-title, 700);
 }
 
 .card__text {
   padding: 3px 25px 0 27px;
-  font-weight: var(--font-weight-text);
+  font-weight: var(--font-weight-text, 400);
   line-height: 116%;
 }
 
@@ -117,10 +143,41 @@
   position: relative;
 }
 
+/* --------------- Тень на тексте в картинке --------------- */
+
+.card__images-text {
+  text-shadow:
+    -1px 0 var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5)),
+    0 1px var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5)),
+    1px 0 var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5)),
+    0 -1px var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5));
+}
+
+@supports (
+  (
+      text-stroke: 1px
+        var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5))
+    )
+    or
+    (
+      -webkit-text-stroke: 1px var(--color-card__images-text-text-shadow, rgb(255
+              255 255 / 0.5))
+    )
+) {
+
+  .card__images-text {
+    -webkit-text-stroke: 1px
+      var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5));
+    text-stroke: 1px
+      var(--color-card__images-text-text-shadow, rgb(255 255 255 / 0.5));
+    text-shadow: none;
+  }
+}
+
 .card__image {
   display: block;
-  border-block-start: 2px solid var(--color-accent);
-  border-block-end: 2px solid var(--color-accent);
+  border-block-start: 2px solid var(--color-accent, #000);
+  border-block-end: 2px solid var(--color-accent, #000);
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
@@ -133,25 +190,50 @@
   inset-inline-end: clamp(0.688rem, 1.315vw + 0.379rem, 1.563rem);
   inset-block-start: 28px;
   font-size: 14px;
-  font-family: var(--font-accent), sans-serif;
-  color: var(--color-card__images-text);
+  font-family: var(--font-accent, 'PressStart2P-Regular'), fantasy;
+  color: var(--color-card__images-text, rgb(0 0 0 / 0.5));
   mix-blend-mode: hard-light;
-}
-
-.card__photo {
-  border: 2px solid var(--color-accent);
 }
 
 .card__buttons {
   display: flex;
   justify-content: flex-end;
-  margin: 3px 25px 17px 0;
+  margin: 3px 25px 25px 0;
 }
 
 .button__text {
   position: relative;
   z-index: 10;
   align-self: center;
+}
+
+/* --------------- Footer --------------- */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: 50px;
+  margin-block-end: clamp(6.375rem, 0.282vw + 6.309rem, 6.563rem);
+}
+
+/* --------------- Кнопка Сохранить --------------- */
+
+.save-button {
+  background-color: var(--color-background, #fff);
+  padding: 16px 19px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+
+.floppy {
+  margin: auto;
+  inline-size: 21px;
+  block-size: 21px;
+  flex: 0 0 auto;
+  fill: var(--color-accent, #000);
+  stroke: var(--color-accent, #000);
 }
 
 /* --------------- Фильтры для картинок --------------- */
@@ -186,15 +268,15 @@
 
 /* --------------- Всплывающее окно диалога --------------- */
 
-.dialog {
+.dialog[open] {
   inline-size: clamp(21.313rem, 1.502vw + 20.96rem, 22.313rem);
   padding: 30px;
   display: grid;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-background);
-  color: var(--color-accent);
-  font-family: var(--font-accent);
+  background-color: var(--color-background, #fff);
+  color: var(--color-accent, #000);
+  font-family: var(--font-accent, 'PressStart2P-Regular'), fantasy;
   font-size: 14px;
   text-transform: uppercase;
   line-height: 150%;
@@ -224,11 +306,29 @@ dialog:not([open]) {
   margin: auto;
 }
 
-.popover-button {
+.popap-button {
   min-inline-size: clamp(13.938rem, 3.38vw + 13.145rem, 16.188rem);
   padding: 9px 17px;
 }
 
 .dialog::backdrop {
   background-color: rgb(0 0 0 / 0.75);
+}
+
+/* --------------- Медиа-запрос для мобилки --------------- */
+
+@media (width <= 376px) {
+
+  .card {
+    width: 100vw;
+  }
+
+  .save-button {
+    flex-direction: column;
+  }
+
+  .floppy {
+    inline-size: 28px;
+    block-size: 28px;
+  }
 }

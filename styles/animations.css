@@ -13,60 +13,48 @@
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
 
-/* ---------- Градиенты ---------- */
-
-.page {
-  background: repeating-linear-gradient(
-      to bottom,
-      var(--color-repeating-linear-gradient) 0 2px,
-      var(--color-repeating-linear-gradient-transparent) 2px 4px
-    ),
-    repeating-linear-gradient(
-      to right,
-      var(--color-repeating-linear-gradient) 0 2px,
-      var(--color-repeating-linear-gradient-transparent) 2px 4px
-    ),
-    linear-gradient(
-      to bottom,
-      var(--color-linear-gradient-from),
-      var(--color-linear-gradient-to)
-    );
-}
-
-@supports (font-variation-settings: normal) {
-
-  .page {
-    font-weight: var(--font-weight-text-light), 400;
-  }
-}
-
 /* --------------- Состояния кнопки в меню хэдера --------------- */
 
+.theme-menu__button {
+  background-color: inherit;
+  border: none;
+  font-size: 14px;
+  text-transform: inherit;
+  padding: 0;
+  position: relative;
+  transition: color 0.3s;
+}
+
 .theme-menu__button:hover {
-  color: var(--color-accent-button);
+  color: var(--color-accent-button, rgb(0 0 0 / 0.6));
   cursor: pointer;
   transition: color 0.3s;
 }
 
 .theme-menu__button:disabled {
-  color: var(--color-accent-button);
+  color: var(--color-accent-button, rgb(0 0 0 / 0.6));
   pointer-events: none;
   transition: color 0.3s;
 }
 
 .theme-menu__button:focus {
   outline: none;
-  color: var(--color-accent-button);
+  color: var(--color-accent-button, rgb(0 0 0 / 0.6));
 }
 
-.theme-menu__button:focus-visible::after {
+.theme-menu__button::after {
   content: '';
   display: block;
   position: absolute;
   inline-size: 100%;
-  border-block-end: 2px solid var(--color-accent-button);
-  transform: scaleX(1);
+  border-block-end: 2px solid var(--color-accent-button, rgb(0 0 0 / 0.6));
+  transform: scaleX(0);
   transform-origin: 0;
+  transition: transform 0.3s;
+}
+
+.theme-menu__button:focus-visible::after {
+  transform: scaleX(1);
   transition: transform 0.3s;
 }
 
@@ -97,36 +85,14 @@
   }
 }
 
-/* --------------- Тень на тексте в картинке --------------- */
-
-.card__images-text {
-  text-shadow:
-    -1px 0 var(--color-card__images-text-text-shadow),
-    0 1px var(--color-card__images-text-text-shadow),
-    1px 0 var(--color-card__images-text-text-shadow),
-    0 -1px var(--color-card__images-text-text-shadow);
-}
-
-@supports (
-  (text-stroke: 1px var(--color-card__images-text-text-shadow)) or
-    (-webkit-text-stroke: 1px var(--color-card__images-text-text-shadow))
-) {
-
-  .card__images-text {
-    -webkit-text-stroke: 1px var(--color-card__images-text-text-shadow);
-    text-stroke: 1px var(--color-card__images-text-text-shadow);
-    text-shadow: none;
-  }
-}
-
 /* --------------- Кнопки в карточке и их состояния --------------- */
 
 .button {
-  background-color: inherit;
-  border: 2px solid var(--color-accent);
+  background-color: var(--color-background, #fff);
+  border: 2px solid var(--color-accent, #000);
   font-size: 14px;
   text-transform: inherit;
-  font-family: var(--font-accent);
+  font-family: var(--font-accent, 'PressStart2p-Regular'), fantasy;
   line-height: 90%;
   position: relative;
   overflow: hidden;
@@ -135,13 +101,13 @@
 
 .button:focus-visible {
   outline: none;
-  box-shadow: 2px 2px 0 0 var(--color-accent);
+  box-shadow: 2px 2px 0 0 var(--color-accent, #000);
   transition: box-shadow 0.3s;
 }
 
 .button:hover {
   cursor: pointer;
-  background-color: var(--color-background);
+  background-color: var(--color-background, #fff);
 }
 
 .button::after {
@@ -151,7 +117,7 @@
   position: absolute;
   inset-inline-start: 0;
   inset-block-start: 0;
-  background-color: var(--color-accent);
+  background-color: var(--color-accent, #000);
   transform: translateX(-100%);
   transition: transform 0.5s ease-in-out;
 }
@@ -167,8 +133,8 @@
 }
 
 .button:hover .floppy {
-  fill: var(--color-button__text);
-  stroke: var(--color-button__text);
+  fill: var(--color-button__text, #fff);
+  stroke: var(--color-button__text, #fff);
   z-index: 10;
   mix-blend-mode: difference;
 }
@@ -199,29 +165,29 @@
 }
 
 .card__icon-button:focus-visible {
-  border: 2px solid var(--color-accent);
+  border: 2px solid var(--color-accent, #000);
   transition: border 0.3s ease;
 }
 
 /* --------------- Hover эффект сердца --------------- */
 
 .like-icon .core {
-  fill: var(--color-background);
+  fill: var(--color-background, #fff);
   transition: fill 0.3s linear 0.03s;
 }
 
 .like-icon:hover .core {
-  fill: var(--color-like-icon-contour);
+  fill: var(--color-like-icon-contour, #000);
   transition: fill 0.3s linear;
 }
 
 .like-icon .main-body {
-  fill: var(--color-background);
+  fill: var(--color-background, #fff);
   transition: fill 0.3s linear;
 }
 
 .like-icon:hover .main-body {
-  fill: var(--color-like-icon-contour);
+  fill: var(--color-like-icon-contour, #000);
   transition: fill 0.3s linear 0.05s;
 }
 
@@ -232,7 +198,7 @@
 }
 
 .like-icon:active .core {
-  fill: var(--color-like-icon-sparks);
+  fill: var(--color-like-icon-sparks, rgb(255 0 0));
   transition: fill 0.3s linear;
 }
 
@@ -241,7 +207,7 @@
 }
 
 .like-icon:active .main-body {
-  fill: var(--color-like-icon-sparks);
+  fill: var(--color-like-icon-sparks, rgb(255 0 0));
   transition: fill 0.3s linear 0.05s;
 }
 
@@ -249,19 +215,19 @@
 /* --------------- Закрашивание внутри --------------- */
 
 .like-icon.is-liked .core {
-  fill: var(--color-like-icon-sparks);
+  fill: var(--color-like-icon-sparks, rgb(255 0 0));
   transition: fill 0.3s linear;
 }
 
 .like-icon.is-liked .main-body {
-  fill: var(--color-like-icon-sparks);
+  fill: var(--color-like-icon-sparks, rgb(255 0 0));
   transition: fill 0.3s linear 0.05s;
 }
 
 /* --------------- Закрашивание контура --------------- */
 
 .like-icon.is-liked .contour {
-  fill: var(--color-like-icon-sparks);
+  fill: var(--color-like-icon-sparks, rgb(255 0 0));
   transition: fill 0.3s linear 0.06s;
 }
 
@@ -301,40 +267,5 @@
 
   to {
     opacity: 1;
-  }
-}
-
-/* --------------- Кнопка Сохранить --------------- */
-
-.save-button {
-  background-color: var(--color-background);
-  margin-block-end: 102px;
-  padding: 19px;
-  min-inline-size: clamp(19.125rem, 2.723vw + 18.487rem, 20.938rem);
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 8px;
-}
-
-.floppy {
-  margin: auto;
-  inline-size: 21px;
-  block-size: 21px;
-  flex: 0 0 auto;
-  z-index: 11;
-  fill: var(--color-accent);
-  stroke: var(--color-accent);
-}
-
-/* --------------- Медиа-запрос для мобилки --------------- */
-
-@media (width <= 376px) {
-
-  .card {
-    width: 100vw;
-  }
-
-  .save-button {
-    flex-direction: column;
   }
 }
